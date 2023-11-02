@@ -84,7 +84,7 @@ export default function SupabaseAuthProvider({
           process.env.NEXT_PUBLIC_VERCEL_ENV === "production" ||
           process.env.NEXT_PUBLIC_VERCEL_ENV === "preview"
             ? process.env.NEXT_PUBLIC_AUTH_REDIRECT_URL
-            : "http://localhost:3000/chat",
+            : "nimble-box-chat-nbx.vercel.app/chat",
       },
     });
   };
