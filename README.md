@@ -2,7 +2,7 @@
 
 Nimble.AI is a ChatGPT clone with enhanced features for makers built on top of using Next.js, TypeScript, Supabase, Jotai and Tailwind CSS.
 
-![Nimble.AI](./public/readme-hero.jpg)
+![Nimble.AI](https://github.com/thakoorchandan/NimbleBox_ChatNBX/blob/main/public/readme-hero.png?raw=true)
 
 ## Running Locally
 
