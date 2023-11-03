@@ -16,6 +16,7 @@ interface ContextI {
   mutate: any;
   signOut: () => Promise<void>;
   signInWithGithub: () => Promise<void>;
+  signInWithGoogle: () => Promise<void>;
 }
 const Context = createContext<ContextI>({
   user: null,
@@ -24,6 +25,7 @@ const Context = createContext<ContextI>({
   mutate: null,
   signOut: async () => {},
   signInWithGithub: async () => {},
+  signInWithGoogle: async () => {},
 });
 
 export default function SupabaseAuthProvider({
@@ -84,7 +86,19 @@ export default function SupabaseAuthProvider({
           process.env.NEXT_PUBLIC_VERCEL_ENV === "production" ||
           process.env.NEXT_PUBLIC_VERCEL_ENV === "preview"
             ? process.env.NEXT_PUBLIC_AUTH_REDIRECT_URL
-            : "nimble-box-chat-nbx.vercel.app/chat",
+            : "http://localhost:3000/chat",
+      },
+    });
+  };
+  const signInWithGoogle = async () => {
+    await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo:
+          process.env.NEXT_PUBLIC_VERCEL_ENV === "production" ||
+          process.env.NEXT_PUBLIC_VERCEL_ENV === "preview"
+            ? process.env.NEXT_PUBLIC_AUTH_REDIRECT_URL
+            : "http://localhost:3000/chat",
       },
     });
   };
@@ -118,6 +132,7 @@ export default function SupabaseAuthProvider({
     mutate,
     signOut,
     signInWithGithub,
+    signInWithGoogle,
   };
 
   return <Context.Provider value={exposed}>{children}</Context.Provider>;
