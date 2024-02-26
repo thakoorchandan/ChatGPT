@@ -30,15 +30,31 @@ const ProfileMenu = () => {
             {user?.full_name?.slice(0, 2).toLocaleUpperCase() ?? "UU"}
           </AvatarFallback>
         </Avatar>
-        <div className="text-left whitespace-nowrap">
-          <div>{`${user?.full_name?.charAt(0).toUpperCase()}${user?.full_name?.slice(1)}`}</div>
-          <div className="text-xs dark:text-neutral-400">{`${user?.full_name}`}</div>
-        </div>
+        {user?.full_name ? (
+          <div className="text-left whitespace-nowrap">
+            <div className="truncate">
+              {user?.full_name?.length > 15
+                ? `${user?.full_name?.substring(0, 15)}...`
+                : `${user?.full_name
+                    ?.charAt(0)
+                    .toUpperCase()}${user?.full_name?.slice(1)}`}
+            </div>
+
+            <div className="text-xs dark:text-neutral-400">{`${user?.full_name}`}</div>
+          </div>
+        ) : (
+          <div className="text-left whitespace-nowrap">
+            <div className="truncate">{`Guest User`}</div>
+            <div className="text-xs dark:text-neutral-400">{`Guest`}</div>
+          </div>
+        )}
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-full mb-2" side="top" align="start">
         <DropdownMenuLabel>
           Created by{" "}
-          <Link href="https://github.com/thakoorchandan" target="_blank">@Thakoor</Link>
+          <Link href="https://github.com/thakoorchandan" target="_blank">
+            @Thakoor
+          </Link>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuSeparator />
